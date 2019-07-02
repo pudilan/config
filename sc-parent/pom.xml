@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.6.RELEASE</version>
+		<version>2.1.6.RELEASE</version>
 	</parent>
 	<groupId>com.sintmo</groupId>
 	<artifactId>sc-parent</artifactId>
@@ -16,9 +18,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-cloud.version>Finchley.SR2</spring-cloud.version>
-
-		<scsa.version>0.0.1-SNAPSHOT</scsa.version>
+		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
 	</properties>
 
 	<dependencyManagement>
@@ -30,12 +30,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-
-			<dependency>
-				<groupId>com.sintmo</groupId>
-				<artifactId>scs-a</artifactId>
-				<version>${scsa.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -45,7 +39,9 @@
 		<module>sces</module>
 		<module>sccs</module>
 		<module>scs-hibernate</module>
-    <module>scs-activiti</module>
-  </modules>
+		<module>scs-activiti</module>
+		<module>scs-redis</module>
+		<module>scs-kafka</module>
+	</modules>
 
 </project>
