@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.56.140:3306/test?characterEncoding=utf8&useSSL=true
+    username: root
+    password: 123456
+  activiti:
+    check-process-definitions: false #自动部署验证设置:true-开启（默认）、false-关闭 
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  show-sql: true
+
+server:
+  port: 8081
+  context-path: /
+  session:
+    timeout: 10
+  tomcat:
+    uri-encoding: UTF-8

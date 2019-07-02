@@ -23,36 +23,41 @@ import com.sintmo.scsb.clients.ScsaClient;
 @RequestMapping("/scsb")
 public class ScsbController {
 
-    @Autowired
-    private ScsaClient scsaClient;
+	@Autowired
+	private ScsaClient scsaClient;
 
-    @RequestMapping("/scsa")
-    public String scsa() {
-        return scsaClient.who("scsb");
-    }
+	@RequestMapping("/who")
+	public String who(@RequestParam("name") String name) {
+		return String.format("I'm scsb,are you %s?", name);
+	}
 
-    @RequestMapping("/transfer")
-    public String buss(@RequestParam("filePath") String filePath) {
-        MultipartFile multipartFile = null;
-        try {
-            Path path = Paths.get(filePath);
-            FileItemFactory factory = new DiskFileItemFactory();
-            FileItem fileItem = factory.createItem("file", Files.probeContentType(path), true,
-                    path.getFileName().toString());
-            Streams.copy(new FileInputStream(path.toFile()), fileItem.getOutputStream(), true);
+	@RequestMapping("/scsa")
+	public String scsa() {
+		return scsaClient.who("scsb");
+	}
 
-            multipartFile = new CommonsMultipartFile(fileItem);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return scsaClient.fileUpload(multipartFile);
-    }
+	@RequestMapping("/transfer")
+	public String buss(@RequestParam("filePath") String filePath) {
+		MultipartFile multipartFile = null;
+		try {
+			Path path = Paths.get(filePath);
+			FileItemFactory factory = new DiskFileItemFactory();
+			FileItem fileItem = factory.createItem("file", Files.probeContentType(path), true,
+					path.getFileName().toString());
+			Streams.copy(new FileInputStream(path.toFile()), fileItem.getOutputStream(), true);
 
-    @RequestMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
-        return scsaClient.fileUpload(file);
-    }
+			multipartFile = new CommonsMultipartFile(fileItem);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return scsaClient.fileUpload(multipartFile);
+	}
+
+	@RequestMapping("/upload")
+	public String upload(@RequestParam("file") MultipartFile file) {
+		return scsaClient.fileUpload(file);
+	}
 
 }
